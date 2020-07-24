@@ -37,7 +37,7 @@
 }, {
     "id": 10,
     "product_name": "돼지고기 (100G)",
-    "price": "1,350"
+    "price": "1,550"
 }, {
     "id": 11,
     "product_name": "김치",
@@ -66,5 +66,13 @@
     "id": 16,
     "product_name": "쌈장",
     "price": "4,000"
+}, {
+    "id": 17,
+    "product_name": "고추장",
+    "price": "5,300"
+}, {
+    "id": 18,
+    "product_name": "고수",
+    "price": "1,600"
 }
 ]
