@@ -30,16 +30,14 @@ class App { // class App
 	chooseDate = e => {
 		let value = e.currentTarget.value;
 		$("#time > option").eq(0)[0].selected = true;
-		$("#time > option").each((idx,x)=>{
-			x.disabled = false;
-		});
+		$("#time > option").each((idx,x)=>{x.disabled = false});
 		let list = this.soldList.filter(x=>{return x.date == value});
 		list.forEach(x=>{$(`option[value='${x.time}']`)[0].disabled = true});
 	}
 
 	postInput = e => {
 		let value = e.currentTarget.value;
-		value = value.replace(/[^\d]/g,"");
+		value = value.replace(/[^\d]/g,""); // 숫자만 입력
 		e.currentTarget.value = value;
 	}
 
@@ -92,7 +90,7 @@ class App { // class App
 		let maxDate = new Date("2020-10-20");
 
 		if(userDate > maxDate || userDate < minDate){
-			alert("날짜가 에반데");
+			alert("날짜가 형식에 맞지 않습니다.");
 			return;
 		}
 
@@ -101,7 +99,7 @@ class App { // class App
 	}
 
 	purchaseBasket(){
-		
+		// 구매 진행 함수 (밸리데이팅 완료)
 		let obj = {};
 		obj.date = date.value;
 		obj.today = new Date().toGMTString();
