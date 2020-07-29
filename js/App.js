@@ -1,4 +1,4 @@
-const local = window.localStorage;
+const local = window.localStorage; // 로컥스토리지 저장
 class App { // class App
 	constructor(list){ // constrcutor of App
 		this.productList = list;
@@ -24,6 +24,7 @@ class App { // class App
 
 	popupClose = e=>{
 		$(e.currentTarget).parent().fadeOut();
+		//console.log(e.currentTarget.parentNode);
 	}
 
 	chooseDate = e => {
