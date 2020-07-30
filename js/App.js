@@ -17,8 +17,8 @@ class App { // class App
 		$("#purchase_btn_1").on('click', this.purchaseStep1);
 		$("#purchase_btn_2").on('click', this.purchaseStep2);
 		$("#tel").on("input", this.telInput);
-		$("#post").on("input", this.postInput);
 		$("#date").on("input", this.chooseDate);
+		$("#post").on("input", this.postInput);
 		$(document).on("click",".popup-close",this.popupClose);
 	}
 
