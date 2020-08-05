@@ -1,0 +1,364 @@
+@charset "UTF-8";
+@import "fontawesome/css/all.css";
+
+/* css init */
+
+* {margin: 0; padding: 0;box-sizing: border-box;font-family: "Arial"}
+a {text-decoration: none;}
+li {list-style: none;}
+.div-wrapper {width: 100%;height: 100%;position: relative;}
+
+/* css init end */
+
+/* header */
+
+header {
+	width: 100%;
+	height: 60px;
+	background-color: #333030;
+	position: relative;
+}
+
+.header-container {
+	width: 60%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	justify-content: space-between;
+}
+
+header .nav-a {
+	margin: 0 10px;
+	color: #aaa;
+	font-size: 18px;
+	transition: color .2s;
+}
+
+header .nav-a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+#logo {
+	color: #fff;
+	position: relative;display: flex;
+	align-items: center;
+}
+
+#symbol {
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	margin-right: 5px;
+	background-image: linear-gradient(to right, #22b8cf,#20c997);
+}
+
+#header-sns {
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #fff;
+	font-size: 5px;
+}
+
+/* header end */
+
+/* visual section */
+
+#visual {
+	width: 100%;height: 600px;
+	position: relative;
+}
+
+#slider {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.slider-pannel {
+	width: 300%;
+	height: 100%;
+	position: absolute;
+	display: flex;
+	justify-content: space-between;
+	transition: left .4s;
+}
+
+.slider-pannel > img {
+	width: calc(100% / 3);
+	height: 100%;
+	object-fit: cover;
+}
+
+.slide-input {
+	width: 30px;
+	height: 30px;
+}
+
+.controller .left {
+	left: 10px;
+}
+
+.controller > label {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #007bff;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #fff;
+	width: 80px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.controller > label:hover {
+	filter: brightness(90%);
+}
+
+.controller .right {
+	right: 10px;
+}
+
+.slide-active-1:checked ~ .controller > label[data-idx="1"],
+.slide-active-2:checked ~ .controller > label[data-idx="2"],
+.slide-active-3:checked ~ .controller > label[data-idx="3"] {
+	display: flex !important;
+}
+.slide-active-1:checked ~ .controller > label[data-idx="3"],
+.slide-active-2:checked ~ .controller > label[data-idx="1"],
+.slide-active-2:checked ~ .controller > label[data-idx="3"],
+.slide-active-3:checked ~ .controller > label[data-idx="1"],
+.slide-active-3:checked ~ .controller > label[data-idx="2"],
+.slide-active-1:checked ~ .controller > label[data-idx="2"] {
+	display: none !important;
+}
+
+.slide-active-1:checked ~ .slider-pannel {left: 0%}
+.slide-active-2:checked ~ .slider-pannel {left: -100%}
+.slide-active-3:checked ~ .slider-pannel {left: -200%}
+
+/* visual section end */
+
+
+/* festival section */
+
+.custom-section {
+	width: 100%;
+	padding: 50px;
+	position: relative;
+	display: flex;
+	height: 210px;
+	flex-direction: column;
+}
+
+.custom-section > h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.custom-section > p {
+	text-align: center;
+}
+
+section#festival {
+	background-color: #f7f7f7;
+}
+
+/* festival section end */
+
+/* wanju section */
+
+section#wanju {
+	background-color: #fff;
+}
+
+/* wanju section end */
+
+/*wildfood section*/
+
+section#wildfood {
+	background-color: #f7f7f7;
+}
+
+/*wildfood section end*/
+
+/*footer*/
+
+footer {
+	width: 100%;
+	height: 200px;
+	background-color: #333030;
+}
+
+.footer-container {
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 90%;
+	height: 100%;
+}
+
+.footer-nav {
+	color: #f4f5f9;
+	cursor: pointer;
+}
+
+.footer-text {
+	color: #f4f5f9;
+	font-size: 12px;
+}
+
+.footer-map {
+	width: 200px;
+	object-fit: cover;
+	transition: transform .4s;
+}
+
+.footer-map:hover {
+	transform: scale(1.3);
+}
+
+/*footer end*/
+
+/* admin page */
+
+
+#graph {
+	width: 100%;
+	position: relative;
+	background-color: #f7f7f7;
+	padding: 50px;
+}
+
+#graph > h1 {
+	position: relative;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.graph-container {
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+.graph-container > img {
+	width: 100%;
+	object-fit: cover;
+}
+
+section#sold {
+	width: 100%;
+	height: auto;position: relative;
+	padding: 50px;
+}
+
+#sold-table {
+	width: 100%;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+#sold-table tr {
+	height: 50px;
+	text-align: center;
+}
+
+#sold-table > thead > tr > th {
+	border:1px solid #000;
+}
+
+#sold-table > tbody > tr > td {
+	border: 1px solid #666;
+}
+
+#sold > h1 {
+	position: relative;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/* shop.html */
+
+section#screen {
+	width: 100%;
+	height: calc(100vh - 260px);
+	position: relative;	
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#screen-table > thead {
+	text-align: center;
+}
+
+#screen-table > tbody {
+	text-align: center;
+}
+
+.item-cnt-box {
+	display: flex;
+	justify-content: center;
+	border:1px solid #ddd;
+}
+
+.item-cnt-box > button {
+	width: 28px;
+	text-align: center;
+	border:none;
+	background: #ddd;
+	outline: none;
+	color: #666;
+}
+
+.item-cnt-box > input {
+	text-align: center;
+	border:none;
+	width: calc(100% - 56px);
+}
+
+#screen-table > tbody {
+	overflow-y: auto;
+}
+
+.toast-container {
+	width: 300px;
+	height: 100vh;
+	z-index: 1000;
+	position: fixed;
+	left: 10px;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.toast-box {
+	width: 100%;
+	height: auto;
+	background-color: #007bff;
+	color: #fff;
+	margin-bottom: 10px;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	position: relative;
+}
+
+.toast-close {
+	position: absolute;
+	color: #fff;
+	font-size: 20px;
+	cursor: pointer;
+	top: 0;
+	right: 10px;
+}
