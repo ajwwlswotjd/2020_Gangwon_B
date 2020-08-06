@@ -1,3 +1,4 @@
+const local = window.localStorage;
 class App { // class App
 	constructor(list){ // constrcutor of App
 		this.productList = list;
@@ -11,28 +12,64 @@ class App { // class App
 	}
 
 	addEvent(){
-
+		
 	}
 
 	showProductList(){
 		this.productList.forEach(x=> this.productShow(x));
 	}
 
+	loadOnLocal(){
+		let json = JSON.stringify(this.basket);
+		local.basket = json;
+	}
+
 	productShow(product){
 		let tr = this.productTemp(product);
 		$(tr).find("div.item-cnt-box > button").on("click", (e)=>{this.productBtnClick(e,product,tr)});
-		$(tr).find("button.btn.btn-primary").on("click",(e)=>{this.pushBasket(product)});
+		$(tr).find("button.btn.btn-primary").on("click",(e)=>{this.pushBasket(tr,product)});
 		$("#screen-table").append(tr);
 	}
 
-	pushBasket(product){
-		let find = this.basket.find(x=> {return x.id == product_name.id});
+	pushBasket(tr,product){
+		let find = this.basket.find(x=> {return x.id == product.id});
+		let cnt = $(tr).find(".item-cnt-input").val()*1;
+		if(isNaN(parseInt(cnt)) || cnt <= 0){
+			alert("잘못된 값");
+			return;
+		}
 		if(find === undefined){
-			this.basket.push(product);
+			product.cnt = cnt;
+			let assignedObject = Object.assign({},product);
+			this.basket.push(assignedObject);
+			let tr = this.basketTemp(assignedObject);
+			$("#basket-table > tbody").append(tr);
+
 			this.toast("장바구니에 담겼습니다.");
 		} else {
+			find.cnt += cnt;
+			find.total = find.cnt * find.priceNum;
+			$(`tr[data-id=${find.id}]`).find(".basket-cnt").html(find.cnt);
+			$(`tr[data-id=${find.id}]`).find(".basket-total").html(find.total.toLocaleString()+"원");
 
+			this.toast("추가 상품이 담겼습니다.");
 		}
+		this.loadOnLocal();
+	}
+
+	basketTemp(product){
+		let tr = document.createElement("tr");
+		tr.dataset.id = product.id;
+		product.total = product.priceNum * product.cnt;
+		tr.innerHTML = `
+		<td>${product.name}</td>
+		<td class="basket-cnt">${product.cnt}</td>
+		<td>${product.price}원</td>
+		<td>${product.price}원</td>
+		<td class="basket-cnt">${product.cnt}</td>
+		<td class="basket-total">${product.total.toLocaleString()}원</td>
+		`;
+		return tr;
 	}
 
 	productBtnClick(e,product,tr){
@@ -47,13 +84,14 @@ class App { // class App
 
 	toast(msg){
 		let toast = document.createElement("div");
+		setTimeout(() => {$(toast).remove()},3000);
 		toast.classList.add("toast-box");
 		toast.innerHTML = `
 			<div>${msg}</div>
 			<div class="toast-close">&times;</div>
 		`;
 		$(toast).find(".toast-close").on("click",()=>{$(toast).fadeOut()});
-		$(".toast-container").prepend(toast);
+		$(".toast-container").append(toast);
 	}
 
 	productTemp(product){
@@ -67,7 +105,7 @@ class App { // class App
 			<button class="item-cnt-minus" data-num="-1">
 			<i class="fa fa-minus"></i>
 			</button>
-			<input type="text" value="${product.cnt}" class="item-cnt-input">
+			<input type="number" value="${product.cnt}" class="item-cnt-input">
 			<button class="item-cnt-plus" data-num="1">
 			<i class="fa fa-plus"></i>
 			</button>

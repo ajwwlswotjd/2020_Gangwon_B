@@ -362,3 +362,13 @@ section#screen {
 	top: 0;
 	right: 10px;
 }
+
+#basket-table tr,
+#screen-table tr {
+	height: 70px;
+}
+
+#basket-table th,
+#basket-table td {
+	text-align: center;
+}

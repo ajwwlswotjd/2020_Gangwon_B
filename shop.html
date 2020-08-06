@@ -29,30 +29,54 @@
 			</nav>
 		</div>
 	</header>
-	<div class="container">
+	
 		<section id="screen">
-			<div class="row d-flex justify-content-between mt-5">
-				<h3 class="col-8">상품 리스트</h3>
-				<h3 class="col-3">장바구니</h3>
+			<div class="row d-flex justify-content-between mt-3">
+				<h3 class="col-5">상품 리스트</h3>
+				<button class="col-1 btn btn-primary">구매</button>
+				<h3 class="col-6">장바구니</h3>
 			</div>
-			<div class="row d-flex justify-content-between">
-				<table class="table col-8 mt-2 table-striped" id="screen-table">
+			<div class="row d-flex justify-content-between mt-2">
+				<table class="table col-6 table-striped" id="screen-table">
 					<thead class="thead-dark">
 						<tr>
 							<th width="10%">#</th>
-							<th width="30%">상품 이름</th>
+							<th width="20%">상품 이름</th>
 							<th width="20%">가격</th>
-							<th width="20%">구매 수량</th>
-							<th width="20%">장바구니</th>
+							<th width="25%">구매 수량</th>
+							<th width="25%">장바구니</th>
 						</tr>
 					</thead>
 					<tbody>
 						
 					</tbody>
 				</table>
+
+				<table class="col-6 table table-striped" id="basket-table">
+					<thead class="thead-dark">
+						<tr>
+							<th>상품명</th>
+							<th>담은 개수</th>
+							<th>정가</th>
+							<th>할인가</th>
+							<th>구매 개수</th>
+							<th>총 가격</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td>우주비행사 나르</td>
+							<td>2</td>
+							<td>3,600원</td>
+							<td>0</td>
+							<td>2</td>
+							<td>7,200원</td>
+						</tr> -->
+					</tbody>
+				</table>
 			</div>
 		</section>
-	</div>
+	
 	
 
 
