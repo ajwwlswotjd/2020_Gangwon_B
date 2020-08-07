@@ -18,6 +18,14 @@ class App { // class App
 		$("#purchase_btn_2").on('click', this.purchaseStep2);
 		$("#tel").on("input", this.telInput);
 		$("#post").on("input", this.postInput);
+		$("#date").on("input", this.chooseDate);
+	}
+
+	chooseDate = e => {
+		let value = e.currentTarget.value;
+		$("#time > option").disabled = false;
+		let list = this.soldList.filter(x=>{return x.date == value});
+		list.forEach(x=>{$(`option[value='${x.time}']`)[0].disabled = true});
 	}
 
 	postInput = e => {
@@ -65,6 +73,15 @@ class App { // class App
 
 		if(post.value.length != 5){
 			alert("우편번호는 5자리 숫자만 가능합니다.");
+			return;
+		}
+
+		let minDate = new Date("2020-10-15");
+		let userDate = new Date(date.value);
+		let maxDate = new Date("2020-10-20");
+
+		if(userDate > maxDate || userDate < minDate){
+			alert("날짜가 에반데");
 			return;
 		}
 
