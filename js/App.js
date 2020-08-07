@@ -74,7 +74,16 @@ class App { // class App
 
 	purchaseBasket(){
 		
-		
+		let obj = {};
+		obj.date = date.value;
+		obj.time = time.value;
+		obj.name = user_name.value;
+		obj.basket = this.basket;
+		log(obj);
+		this.soldList.push(obj);
+		this.basket = [];
+		this.saveOnLocal();
+		location.reload();
 	}
 
 	purchaseStep1 = e => {
@@ -100,8 +109,11 @@ class App { // class App
 	}
 
 	saveOnLocal(){
-		let json = JSON.stringify(this.basket,null,0);
-		local.basket = json;
+		let basketJSON = JSON.stringify(this.basket,null,0);
+		local.basket = basketJSON;
+		
+		let soldLIstJSON = JSON.stringify(this.soldList,null,0);
+		local.soldList = soldLIstJSON;
 	}
 
 	productShow(product){
