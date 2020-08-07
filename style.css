@@ -247,11 +247,17 @@ footer {
 	width: 100%;
 	height: auto;
 	position: relative;
+	display: flex;
+	justify-content: center;
 }
 
 .graph-container > img {
 	width: 100%;
 	object-fit: cover;
+}
+
+.graph-container > canvas {
+	border:1px solid #ccc;
 }
 
 section#sold {
@@ -399,4 +405,10 @@ section#screen {
 
 #purchase-popup {
 	display: none;
+}
+
+.admin-link {
+	position:fixed;
+	bottom: 0;
+	right: 0;
 }

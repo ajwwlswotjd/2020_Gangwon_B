@@ -93,10 +93,10 @@ class App { // class App
 		
 		let obj = {};
 		obj.date = date.value;
+		obj.today = new Date().toGMTString();
 		obj.time = time.value;
 		obj.name = user_name.value;
 		obj.basket = this.basket;
-		log(obj);
 		this.soldList.push(obj);
 		this.basket = [];
 		this.saveOnLocal();
