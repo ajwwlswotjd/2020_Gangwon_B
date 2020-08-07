@@ -232,3 +232,13 @@ window.addEventListener("load",()=>{ // addEventListener
 //	for(let i = 0; i < arguments.length; i++) sum += arguments[i];
 //	return sum;
 //}
+
+//loadFromSoldList(date){
+//	// date == "2020-10-15"
+//	arr = ["09:00","11:00","13:00"];
+//	let list = this.soldList.filter(x=>{return x[0] == date}); // expected output : [[2020]]
+//	list.forEach(x=>{
+//		// x : ["2020-10-15","13:00"]
+//		document.querySelector(`option[value='${x[1]}']`).
+//	});
+//}
