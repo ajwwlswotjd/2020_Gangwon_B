@@ -3,6 +3,7 @@ class App { // class App
 	constructor(list){ // constrcutor of App
 		this.productList = list;
 		this.basket = [];
+		this.soldList = [];
 		this.init(); // initialize
 	}
 
@@ -16,6 +17,13 @@ class App { // class App
 		$("#purchase_btn_1").on('click', this.purchaseStep1);
 		$("#purchase_btn_2").on('click', this.purchaseStep2);
 		$("#tel").on("input", this.telInput);
+		$("#post").on("input", this.postInput);
+	}
+
+	postInput = e => {
+		let value = e.currentTarget.value;
+		value = value.replace(/[^\d]/g,"");
+		e.currentTarget.value = value;
 	}
 
 	telInput = e => {
@@ -38,11 +46,35 @@ class App { // class App
 		let empty = obj.find(x=>{return x[1] == ""});
 
 		if(empty !== undefined){ 
-			alert(`${empty[0]} 필수 입력 사항입니다.`);
+			let str = empty[0];
+			if(str == "상세주소는") str = "상세 주소는";
+			alert(`${str} 필수 입력 사항입니다.`);
 			return;
 		}
 
+		const name_ptn = /^[ㄱ-힣]{2,7}$/;
+		if(!name_ptn.test(user_name.value)){
+			alert("이름이 입력 조건에 일치하지 않습니다.");
+			return;
+		}
 
+		if(tel.value.length != 13){
+			alert("올바른 전화번호 형태는 000-0000-0000입니다.");
+			return;
+		}
+
+		if(post.value.length != 5){
+			alert("우편번호는 5자리 숫자만 가능합니다.");
+			return;
+		}
+
+		// 여기까지 오면 구매 진행
+		this.purchaseBasket();
+	}
+
+	purchaseBasket(){
+		
+		
 	}
 
 	purchaseStep1 = e => {
@@ -56,6 +88,7 @@ class App { // class App
 
 	async loadFromLocal(){
 		if(local.basket !== undefined) this.basket = await JSON.parse(local.basket);
+		if(local.soldList !== undefined) this.soldList = await JSON.parse(local.soldList);
 		this.basket.forEach(x=>{
 			let tr = this.basketTemp(x);
 			$("#basket-table > tbody").append(tr);
