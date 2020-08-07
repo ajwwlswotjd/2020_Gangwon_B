@@ -9,8 +9,48 @@
 	<script src="js/App.js"></script>
 </head>
 <body>
-	<div class="popup" id="">
-		
+	<div class="popup" id="purchase-popup">
+		<div class="popup-container purchase-container">
+			<div class="div-wrapper">
+				<div class="form-group">
+					<label for="date">배송일</label>
+					<input id="date" type="date" min="2020-10-15" max="2020-10-20" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="time">배송시간</label>
+					<select id="time" class="form-control">
+						<option value="09:00">09:00</option>
+						<option value="11:00">11:00</option>
+						<option value="13:00">13:00</option>
+						<option value="15:00">15:00</option>
+						<option value="17:00">17:00</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="user_name">구매자명</label>
+					<input id="user_name" type="text" class="form-control" minlength="0">
+				</div>
+				<div class="form-group">
+					<label for="tel">전화번호</label>
+					<input id="tel" type="text" class="form-control" maxlength="13">
+				</div>
+				<div class="form-group">
+					<label for="post">우편번호</label>
+					<input id="post" type="number" class="form-control" maxlength="5">
+				</div>
+				<div class="form-group">
+					<label for="address">주소</label>
+					<input id="address" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="detail">상세 주소</label>
+					<input id="detail" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" id="purchase_btn_2">구매 완료</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="toast-container">
 		<!-- <div class="toast-box">

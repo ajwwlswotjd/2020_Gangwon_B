@@ -14,7 +14,35 @@ class App { // class App
 
 	addEvent(){
 		$("#purchase_btn_1").on('click', this.purchaseStep1);
-		
+		$("#purchase_btn_2").on('click', this.purchaseStep2);
+		$("#tel").on("input", this.telInput);
+	}
+
+	telInput = e => {
+		let value = e.currentTarget.value;
+		value = value.replace(/[^\d]/g,"").replace(/([\d]{3})([\d]{4})([\d]{4})/,"$1-$2-$3");
+		e.currentTarget.value = value;
+	}
+
+	purchaseStep2 = e => {
+		let obj = {};
+		obj.배송일은 = date.value;
+		obj.배송시간은  = time.value;
+		obj.구매자명은 = user_name.value;
+		obj.전화번호는 = tel.value;
+		obj.우편번호는 = post.value;
+		obj.주소는 = address.value;
+		obj.상세주소는 = detail.value;
+		obj = Object.entries(obj);
+
+		let empty = obj.find(x=>{return x[1] == ""});
+
+		if(empty !== undefined){ 
+			alert(`${empty[0]} 필수 입력 사항입니다.`);
+			return;
+		}
+
+
 	}
 
 	purchaseStep1 = e => {
@@ -23,7 +51,7 @@ class App { // class App
 			return;
 		}
 
-		
+		$('#purchase-popup').fadeIn();
 	}
 
 	async loadFromLocal(){
