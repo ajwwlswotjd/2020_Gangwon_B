@@ -8,32 +8,53 @@ class App { // class App
 
 	init(){
 		this.addEvent(); // addEvent
+		this.loadFromLocal();
 		this.showProductList();
 	}
 
 	addEvent(){
+		$("#purchase_btn_1").on('click', this.purchaseStep1);
 		
+	}
+
+	purchaseStep1 = e => {
+		if(this.basket.length <= 0){
+			alert("상품을 담아주세요.");
+			return;
+		}
+
+		
+	}
+
+	async loadFromLocal(){
+		if(local.basket !== undefined) this.basket = await JSON.parse(local.basket);
+		this.basket.forEach(x=>{
+			let tr = this.basketTemp(x);
+			$("#basket-table > tbody").append(tr);
+		});
 	}
 
 	showProductList(){
 		this.productList.forEach(x=> this.productShow(x));
 	}
 
-	loadOnLocal(){
-		let json = JSON.stringify(this.basket);
+	saveOnLocal(){
+		let json = JSON.stringify(this.basket,null,0);
 		local.basket = json;
 	}
 
 	productShow(product){
 		let tr = this.productTemp(product);
 		$(tr).find("div.item-cnt-box > button").on("click", (e)=>{this.productBtnClick(e,product,tr)});
-		$(tr).find("button.btn.btn-primary").on("click",(e)=>{this.pushBasket(tr,product)});
+		$(tr).find("button.btn.btn-primary").on("click",(e)=>{
+			let cnt = $(tr).find(".item-cnt-input").val()*1;
+			this.pushBasket(cnt,product);
+		});
 		$("#screen-table").append(tr);
 	}
 
-	pushBasket(tr,product){
+	pushBasket(cnt,product){
 		let find = this.basket.find(x=> {return x.id == product.id});
-		let cnt = $(tr).find(".item-cnt-input").val()*1;
 		if(isNaN(parseInt(cnt)) || cnt <= 0){
 			alert("잘못된 값");
 			return;
@@ -44,17 +65,15 @@ class App { // class App
 			this.basket.push(assignedObject);
 			let tr = this.basketTemp(assignedObject);
 			$("#basket-table > tbody").append(tr);
-
 			this.toast("장바구니에 담겼습니다.");
 		} else {
 			find.cnt += cnt;
 			find.total = find.cnt * find.priceNum;
 			$(`tr[data-id=${find.id}]`).find(".basket-cnt").html(find.cnt);
 			$(`tr[data-id=${find.id}]`).find(".basket-total").html(find.total.toLocaleString()+"원");
-
 			this.toast("추가 상품이 담겼습니다.");
 		}
-		this.loadOnLocal();
+		this.saveOnLocal();
 	}
 
 	basketTemp(product){
@@ -137,4 +156,18 @@ window.addEventListener("load",()=>{ // addEventListener
 		let list = json.map(x=>{return new Item(x.id,x.product_name,x.price)});
 		let app = new App(list); // make App
 	});
+
+	// $(asdf).on("input",(e)=>{
+	// 	let value = e.currentTarget.value;
+	// 	value = value.replace(/[^\d]/g,"");
+	// 	value = value.replace(/([0-9]{3})([0-9]{4})([0-9]{4})/,"$1-$2-$3");
+	// 	e.currentTarget.value = value;
+	// });
 }); 
+
+
+//function sum(){
+//	let sum = 0;
+//	for(let i = 0; i < arguments.length; i++) sum += arguments[i];
+//	return sum;
+//}
