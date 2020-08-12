@@ -1,7 +1,9 @@
+
 @charset "UTF-8";
 @import "fontawesome/css/all.css";
 
 /* css init */
+/* css 최상단 주석은 validator 터짐 */
 
 * {margin: 0; padding: 0;box-sizing: border-box;font-family: "Arial"}
 a {text-decoration: none;}
