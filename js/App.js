@@ -1,4 +1,4 @@
-const local = window.localStorage;
+const local = window.localStorage; // 로컥스토리지 저장
 class App { // class App
 	constructor(list){ // constrcutor of App
 		this.productList = list;
@@ -17,28 +17,27 @@ class App { // class App
 		$("#purchase_btn_1").on('click', this.purchaseStep1);
 		$("#purchase_btn_2").on('click', this.purchaseStep2);
 		$("#tel").on("input", this.telInput);
-		$("#post").on("input", this.postInput);
 		$("#date").on("input", this.chooseDate);
+		$("#post").on("input", this.postInput);
 		$(document).on("click",".popup-close",this.popupClose);
 	}
 
 	popupClose = e=>{
 		$(e.currentTarget).parent().fadeOut();
+		//console.log(e.currentTarget.parentNode);
 	}
 
 	chooseDate = e => {
 		let value = e.currentTarget.value;
 		$("#time > option").eq(0)[0].selected = true;
-		$("#time > option").each((idx,x)=>{
-			x.disabled = false;
-		});
+		$("#time > option").each((idx,x)=>{x.disabled = false});
 		let list = this.soldList.filter(x=>{return x.date == value});
 		list.forEach(x=>{$(`option[value='${x.time}']`)[0].disabled = true});
 	}
 
 	postInput = e => {
 		let value = e.currentTarget.value;
-		value = value.replace(/[^\d]/g,"");
+		value = value.replace(/[^\d]/g,""); // 숫자만 입력
 		e.currentTarget.value = value;
 	}
 
@@ -91,7 +90,7 @@ class App { // class App
 		let maxDate = new Date("2020-10-20");
 
 		if(userDate > maxDate || userDate < minDate){
-			alert("날짜가 에반데");
+			alert("날짜가 형식에 맞지 않습니다.");
 			return;
 		}
 
@@ -100,7 +99,7 @@ class App { // class App
 	}
 
 	purchaseBasket(){
-		
+		// 구매 진행 함수 (밸리데이팅 완료)
 		let obj = {};
 		obj.date = date.value;
 		obj.today = new Date().toGMTString();

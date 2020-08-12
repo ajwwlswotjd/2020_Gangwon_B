@@ -12,9 +12,10 @@ class AdminApp {
 
     init(){
         this.loadFromLocal();
-        this.addEvent();
         this.drawCanvas();
         this.drawTable();
+        this.addEvent();
+        // addEvent 함수가 제일 나중에 호출되어야 한다.
     }
 
     loadFromLocal(){
