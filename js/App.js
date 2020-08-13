@@ -19,11 +19,19 @@ class App { // class App
 		$("#tel").on("input", this.telInput);
 		$("#post").on("input", this.postInput);
 		$("#date").on("input", this.chooseDate);
+		$(document).on("click",".popup-close",this.popupClose);
+	}
+
+	popupClose = e=>{
+		$(e.currentTarget).parent().fadeOut();
 	}
 
 	chooseDate = e => {
 		let value = e.currentTarget.value;
-		$("#time > option").disabled = false;
+		$("#time > option").eq(0)[0].selected = true;
+		$("#time > option").each((idx,x)=>{
+			x.disabled = false;
+		});
 		let list = this.soldList.filter(x=>{return x.date == value});
 		list.forEach(x=>{$(`option[value='${x.time}']`)[0].disabled = true});
 	}
@@ -50,7 +58,9 @@ class App { // class App
 		obj.주소는 = address.value;
 		obj.상세주소는 = detail.value;
 		obj = Object.entries(obj);
-
+		// entries => 오브젝트를 배열로 만들어줌
+		// Ex) {"name":"정재성","age":14}
+		// => [["name","정재성"],["age",14]]
 		let empty = obj.find(x=>{return x[1] == ""});
 
 		if(empty !== undefined){ 

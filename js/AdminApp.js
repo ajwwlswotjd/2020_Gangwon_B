@@ -14,11 +14,38 @@ class AdminApp {
         this.loadFromLocal();
         this.addEvent();
         this.drawCanvas();
+        this.drawTable();
     }
 
     loadFromLocal(){
         if(local.soldList !== undefined) this.soldList = JSON.parse(local.soldList);
     }
+
+    drawTable(){
+        let list = this.soldList.sort((a,b)=>{
+            return new Date(b.today) - new Date(a.today);
+        });
+        list.forEach(sellData=>{
+            
+            sellData.basket.forEach(item=>{
+                let tr = this.makeDom(sellData,item);
+                $("#sold-table > tbody").append(tr);
+            });    
+        });   
+    }
+
+    makeDom(sellData,item){
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${sellData.name}</td>
+            <td>${item.name}</td>
+            <td>${item.cnt}</td>
+            <td>${new Date(sellData.today).toLocaleString()}</td>
+        `;
+        return tr;
+    }
+
+
 
     drawCanvas(){
 
@@ -67,18 +94,8 @@ class AdminApp {
             this.ctx.strokeRect(100,drawY, width ,size);
             
             this.ctx.fillStyle = "#333030";
-            this.ctx.fillText(totalArr[i].toLocaleString(), 105,drawY+size/2);
+            this.ctx.fillText(totalArr[i].toLocaleString(), 105,drawY+size/2);            
         }
-
-        log(totalArr);
-
-
-    }
-
-    sum(){
-        let sum = 0;
-        for(let i = 0; i < arguments.length; i++) sum += arguments[i];
-        return sum;
     }
 
     addEvent(){
