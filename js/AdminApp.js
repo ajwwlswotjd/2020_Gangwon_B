@@ -5,8 +5,8 @@ class AdminApp {
         this.ctx = this.canvas.getContext("2d");
         this.width = this.canvas.width;
         this.height = this.canvas.height;
-
         this.soldList = [];
+
         this.init();
     }
 
@@ -23,10 +23,9 @@ class AdminApp {
     }
 
     drawTable(){
-        let list = this.soldList.sort((a,b)=>{
+        this.soldList.sort((a,b)=>{
             return new Date(b.today) - new Date(a.today);
-        });
-        list.forEach(sellData=>{
+        }).forEach(sellData=>{
             
             sellData.basket.forEach(item=>{
                 let tr = this.makeDom(sellData,item);
@@ -37,12 +36,14 @@ class AdminApp {
 
     makeDom(sellData,item){
         let tr = document.createElement("tr");
+
         tr.innerHTML = `
             <td>${sellData.name}</td>
             <td>${item.name}</td>
             <td>${item.cnt}</td>
             <td>${new Date(sellData.today).toLocaleString()}</td>
         `;
+
         return tr;
     }
 
@@ -100,7 +101,7 @@ class AdminApp {
     }
 
     addEvent(){
-        
+        // addEvent Comment     
     }
 }
 
